@@ -1,0 +1,372 @@
+{
+  "version": 1,
+  "projects": {
+    "accounts": {
+      "root": "apps/accounts",
+      "sourceRoot": "apps/accounts/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/accounts",
+            "index": "apps/accounts/src/index.html",
+            "main": "apps/accounts/src/main.tsx",
+            "polyfills": "apps/accounts/src/polyfills.ts",
+            "tsConfig": "apps/accounts/tsconfig.app.json",
+            "assets": ["apps/accounts/src/favicon.ico", "apps/accounts/src/assets"],
+            "styles": ["apps/accounts/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/babel"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/accounts/src/environments/environment.ts",
+                  "with": "apps/accounts/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "accounts:build",
+            "proxyConfig": "apps/accounts/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "accounts:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/accounts/.eslintrc",
+            "tsConfig": ["apps/accounts/tsconfig.app.json", "apps/accounts/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/accounts/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/accounts/jest.config.js",
+            "tsConfig": "apps/accounts/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "accounts-e2e": {
+      "root": "apps/accounts-e2e",
+      "sourceRoot": "apps/accounts-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/accounts-e2e/cypress.json",
+            "tsConfig": "apps/accounts-e2e/tsconfig.e2e.json",
+            "devServerTarget": "accounts:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "accounts:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/accounts-e2e/.eslintrc",
+            "tsConfig": ["apps/accounts-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/accounts-e2e/**"]
+          }
+        }
+      }
+    },
+    "accounts-ui": {
+      "root": "libs/accounts/ui",
+      "sourceRoot": "libs/accounts/ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/accounts/ui/.eslintrc",
+            "tsConfig": ["libs/accounts/ui/tsconfig.lib.json", "libs/accounts/ui/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/accounts/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/accounts/ui/jest.config.js",
+            "tsConfig": "libs/accounts/ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "prospects": {
+      "root": "apps/prospects",
+      "sourceRoot": "apps/prospects/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/prospects",
+            "index": "apps/prospects/src/index.html",
+            "main": "apps/prospects/src/main.tsx",
+            "polyfills": "apps/prospects/src/polyfills.ts",
+            "tsConfig": "apps/prospects/tsconfig.app.json",
+            "assets": ["apps/prospects/src/favicon.ico", "apps/prospects/src/assets"],
+            "styles": ["apps/prospects/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/babel"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/prospects/src/environments/environment.ts",
+                  "with": "apps/prospects/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "prospects:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "prospects:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/prospects/.eslintrc",
+            "tsConfig": ["apps/prospects/tsconfig.app.json", "apps/prospects/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/prospects/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/prospects/jest.config.js",
+            "tsConfig": "apps/prospects/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "prospects-e2e": {
+      "root": "apps/prospects-e2e",
+      "sourceRoot": "apps/prospects-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/prospects-e2e/cypress.json",
+            "tsConfig": "apps/prospects-e2e/tsconfig.e2e.json",
+            "devServerTarget": "prospects:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "prospects:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/prospects-e2e/.eslintrc",
+            "tsConfig": ["apps/prospects-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/prospects-e2e/**"]
+          }
+        }
+      }
+    },
+    "prospects-ui": {
+      "root": "libs/prospects/ui",
+      "sourceRoot": "libs/prospects/ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/prospects/ui/.eslintrc",
+            "tsConfig": ["libs/prospects/ui/tsconfig.lib.json", "libs/prospects/ui/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/prospects/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/prospects/ui/jest.config.js",
+            "tsConfig": "libs/prospects/ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-utils": {
+      "root": "libs/shared/utils",
+      "sourceRoot": "libs/shared/utils/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/utils/.eslintrc",
+            "tsConfig": ["libs/shared/utils/tsconfig.lib.json", "libs/shared/utils/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/shared/utils/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/utils/jest.config.js",
+            "tsConfig": "libs/shared/utils/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-auth": {
+      "root": "libs/shared/auth",
+      "sourceRoot": "libs/shared/auth/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/auth/.eslintrc",
+            "tsConfig": ["libs/shared/auth/tsconfig.lib.json", "libs/shared/auth/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/shared/auth/**"]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:bundle",
+          "options": {
+            "outputPath": "dist/libs/shared/auth",
+            "tsConfig": "libs/shared/auth/tsconfig.lib.json",
+            "project": "libs/shared/auth/package.json",
+            "entryFile": "libs/shared/auth/src/index.ts",
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/auth/jest.config.js",
+            "tsConfig": "libs/shared/auth/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "accounts"
+}

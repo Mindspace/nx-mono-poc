@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+osType="$(uname -s)"
+case "${osType}" in
+  Linux*)     machine=Linux;;
+  Darwin*)    machine=MacOS;;
+  CYGWIN*)    machine=Windows;;
+  MINGW*)     machine=Windows;;
+  *)          machine="UNKNOWN: ${osType}"
+esac
+
+red='\033[0;31m'
+noColor='\033[0m'
+if ! command -v yarn >/dev/null ; then
+  echo "Your ${machine} device does not have yarn installed."
+  echo -e "Please enter the command to install yarn ${red}globally${noColor} for your OS:"
+  read commandToRun
+  echo "Installing yarn..."
+  eval $commandToRun & INSTALLING_YARN=$! 
+  wait $INSTALLING_YARN
+  echo "yarn is successfully installed."
+fi
+
+yarn install & YARN_PROCESS=$!
+wait $YARN_PROCESS
+# yarn rest-api &
+yarn start accounts
+
+# Kudos to Tundzhel Mert for this improved bash script!

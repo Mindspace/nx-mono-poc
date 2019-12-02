@@ -1,0 +1,8 @@
+{
+  "name": "shared-auth",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  }
+}

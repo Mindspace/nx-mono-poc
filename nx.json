@@ -1,0 +1,38 @@
+{
+  "npmScope": "poc",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "accounts": {
+      "tags": ["scope:accounts", "type:app"]
+    },
+    "accounts-e2e": {
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["accounts"]
+    },
+    "prospects": {
+      "tags": ["scope:prospects", "type:app"]
+    },
+    "prospects-e2e": {
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["prospects"]
+    },
+    "accounts-ui": {
+      "tags": ["scope:accounts", "type:ui"]
+    },
+    "prospects-ui": {
+      "tags": ["scope:prospects", "type:ui"]
+    },
+    "shared-utils": {
+      "tags": ["scope:shared", "type:utils"]
+    },
+    "shared-auth": {
+      "tags": ["scope:shared", "type:auth"]
+    }
+  }
+}

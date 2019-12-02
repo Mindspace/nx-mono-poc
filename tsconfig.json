@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@poc/accounts/ui": ["libs/accounts/ui/src/index.ts"],
+      "@poc/prospects/ui": ["libs/prospects/ui/src/index.ts"],
+      "@poc/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@poc/shared/auth": ["libs/shared/auth/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
