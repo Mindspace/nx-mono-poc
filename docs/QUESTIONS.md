@@ -14,13 +14,9 @@ Here are common questions and concerns regarding the use of a mono-repo:
 1. [How do I prepare containerized builds?](#10)
 1. [What is the difference between code promotions and code pulls?](#11)
 
-<br>
-
----
+# Answers
 
 <br>
-
-## Answers
 
 <a name="1"></a>
 
@@ -46,6 +42,10 @@ Continuous integration tests will be automatically performed for (a) each Pull R
 
 <br>
 
+---
+
+<br>
+
 <a name="2"></a>
 
 #### 2) Can I build and test only 1 application?
@@ -64,6 +64,10 @@ nx serve accounts;
 
 <br>
 
+---
+
+<br>
+
 <a name="3"></a>
 
 #### 3) How do I run only tests have for my my library or application?
@@ -74,6 +78,10 @@ Using the `nx test --help` command, developers can easily see all the options av
 nx run accounts:test      # run all tests associated with 'accounts` app and its libraries
 nx run accounts-ui:test   # run all tests on the 'accounts-ui' library
 ```
+
+<br>
+
+---
 
 <br>
 
@@ -119,6 +127,10 @@ Library tags are defined in `nx.json` and `.eslintrc` should specify `@nrwl/nx/e
 
 <br>
 
+---
+
+<br>
+
 <a name="5"></a>
 
 ### How can I restrict changes to my library?
@@ -149,9 +161,21 @@ Here is a partial snippet:
 /libs/shared/**                                                @nextgen/global-approvers @nextgen/sel @nextgen/shared
 ```
 
+<br>
+
+---
+
+<br>
+
 <a name="6"></a>
 
 ### How should I organize my application libraries?
+
+<br>
+
+---
+
+<br>
 
 <a name="7"></a>
 
@@ -179,17 +203,41 @@ When we want to import `AuthSession` inside another lib or app, we want to impor
 
 > Never let a lib import from its own Barrel file
 
+<br>
+
+---
+
+<br>
+
 <a name="8"></a>
 
 ### How do I structure seperate CI/CD for each application?
+
+<br>
+
+---
+
+<br>
 
 <a name="9"></a>
 
 ### How do I publish a stand-alone library for external use?
 
+<br>
+
+---
+
+<br>
+
 <a name="10"></a>
 
 ### How do I prepare containerized builds?
+
+<br>
+
+---
+
+<br>
 
 <a name="11"></a>
 
