@@ -16,15 +16,13 @@ Here are common questions and concerns regarding the use of a mono-repo:
 
 <br>
 
----
-
-<br>
-
-## Answers
+# Answers
 
 <a name="1"></a>
 
-#### 1) Do all applications have to be deployed together?
+#### > Do all applications have to be deployed together?
+
+<br>
 
 Applications can be deployed independent of each other.
 
@@ -46,9 +44,13 @@ Continuous integration tests will be automatically performed for (a) each Pull R
 
 <br>
 
+---
+
 <a name="2"></a>
 
-#### 2) Can I build and test only 1 application?
+#### > Can I build and test only 1 application?
+
+<br>
 
 Yes. Each application has specific build and testing tools + scripts. Each mono-repository has a target name associated with each application: see the `projects` listing in the `workspace.json`.
 
@@ -64,9 +66,13 @@ nx serve accounts;
 
 <br>
 
+---
+
 <a name="3"></a>
 
-#### 3) How do I run only tests have for my my library or application?
+#### > How do I run only tests have for my my library or application?
+
+<br>
 
 Using the `nx test --help` command, developers can easily see all the options available to run tests on applications or libraries:
 
@@ -75,11 +81,17 @@ nx run accounts:test      # run all tests associated with 'accounts` app and its
 nx run accounts-ui:test   # run all tests on the 'accounts-ui' library
 ```
 
+> Note: `account` and `accounts-ui` are projects defined in [`workspace.json`](../workspace.json): each project configures builders, testers, and linters for that specific React library or application.
+
 <br>
+
+---
 
 <a name="4"></a>
 
-#### 4) How can I restrict usage of my library?
+#### > How can I restrict usage of my library?
+
+<br>
 
 Four (4) rules are mandated to constrain and restrict library usage:
 
@@ -119,17 +131,28 @@ Library tags are defined in `nx.json` and `.eslintrc` should specify `@nrwl/nx/e
 
 <br>
 
+---
+
 <a name="5"></a>
 
-### How can I restrict changes to my library?
+#### > How can I restrict changes to my library?
 
-The Pull-Request process is the only way to prevent **changes** to library code.
+<br>
+
+'Pull-Requests + CodeOwners' are the only way to prevent **changes** to library code.
 
 ![image](https://user-images.githubusercontent.com/210413/70566524-d9e62780-1b59-11ea-8b48-147dbbc8d1df.png)
 
-CodeOwners can be assigned responsibility for sections of the repository. Any PR change [with changes to a part of the repo associated with that CodeOwner] will require the CodeOwner to review and signoff before the PR can be merged.
+> @see [Code Owners for Bitbucket Server](https://marketplace.atlassian.com/apps/1218598/code-owners-for-bitbucket-server?hosting=server&tab=overview)
 
-Codeowner groups and coverage are defined in [CODEOWNERS](./CODEOWNERS).
+CodeOwners can be assigned responsibility for sections of the repository. Any PR change [with changes to a part of the repo associated with that CodeOwner] will require the CodeOwner to review and signoff before the PR can be merged. Codeowner groups and coverage are defined in [CODEOWNERS](../.github/CODEOWNERS) using notations like:
+
+```text
+ # ==========================================
+ # Associated with: <team name>
+ # ==========================================
+ <repo path>    <organization>/<team> <organization>/<team>
+```
 
 Here is a partial snippet:
 
@@ -149,20 +172,52 @@ Here is a partial snippet:
 /libs/shared/**                                                @nextgen/global-approvers @nextgen/sel @nextgen/shared
 ```
 
+<br>
+
+---
+
 <a name="6"></a>
 
-### How should I organize my application libraries?
+#### > How should I organize my application libraries?
+
+<br>
+
+Applications and libraries are two fundamental building blocks in a monorepo.
+
+An application:
+
+- can be built into (a) a deployable artifact, or (b) an e2e testing artifact
+- contains configurations for its build process, running its tests and lint checks
+- can consume code from libraries
+
+A library:
+
+- contains code that can be consumed by applications or other libraries
+- contains a configuration for runnings its tests
+- can consume code from other libraries
+
+A monorepo can contain multiple applications and multiple libraries. Developers are encouraged to read the following resources for more details:
+
+- [Organizing Code in Nx monorepo for immediate team-wide benefits](https://medium.com/showpad-engineering/how-to-organize-and-name-applications-and-libraries-in-an-nx-monorepo-for-immediate-team-wide-9876510dbe28)
+- [Opinionated Guidelines for Large Nx Projects](https://blog.strongbrew.io/opinionated-guidelines-for-large-nx-angular-projects/)
+- [Advanced Nx Workspaces](https://nxplaybook.com/p/advanced-nx-workspaces)
+
+<br>
+
+---
 
 <a name="7"></a>
 
-### How do I restrict library code usage to public API(s) only?
+#### > How do I restrict library code usage to public API(s) only?
 
-A **barrel** file is used to define the public API for a package or library. A barrel file is a _index.ts_ file that lives in the src directory of every Nx lib and is meant to expose logic to the rest of the workspace.
+<br>
+
+A **barrel** file is used to define the public API for a package or library. A barrel file is an **_index.ts_** file that lives in the src directory of every Nx lib and is meant to expose logic to the rest of the workspace.
 
 Only the APIs exported from the _index.ts_ are availble - only symbols which are explicitly exported from this file should be eligible for consumption in other parts of the workspace. This allows developers to hide/protect the private implementation details for a library or package.
 
 - Deep imports into a library are prohibited.
-- Don't ever import a library from a relative path
+- Don't ever import a library from a relative path.
 
 Nx uses TypeScript path mappings (@see [tsconfig.json](./tsconfig.json)) to map the module names to the correct barrel files:
 
@@ -175,22 +230,62 @@ Nx uses TypeScript path mappings (@see [tsconfig.json](./tsconfig.json)) to map 
 }
 ```
 
+Consider the following examples:
+
+- `@poc/shared/utils/lib/shared-auth` is **not allowed** since this skips the barrel file and attempts to load a _deep_ module.
+- `import { AuthSession } from '../../../../../shared/auth/src'` is **not allowed**.`
+- `import { AuthSession } from '@poc/shared/auth'` is **allowed** from other libraries or applications.
+- `import { AuthSession } from '@poc/shared/auth'` is **not allowed** inside the same library. Instead use relative paths.
+  > Never let a lib import from its own Barrel file
+
 When we want to import `AuthSession` inside another lib or app, we want to import it from `@poc/shared/auth`. This is way cleaner then importing it from a relative path like `../../../libs/shared/auth/src/index.ts` and helps protect us from the overexposure problem described above.
 
-> Never let a lib import from its own Barrel file
+<br>
+
+---
 
 <a name="8"></a>
 
-### How do I structure seperate CI/CD for each application?
+#### > How do I structure seperate Continuous Integration (CI) for each application?
+
+<br>
+
+Continous integration (CI) requires tasks for lint, builds, and tests to be automatically run for each PR and each commits to `develop`. The specific CI tasks that will be run are configured in a [`nodejs.yml`](../.github/workflows/nodejs.yml) script file; which can configure lint, build, and test tasks for:
+
+- the default application,
+- all applications,
+- only the libs/applications **affected by** the changes... [recommended]
+
+```yml
+run: |
+  npm ci
+  npm run affected:lint
+  npm run affected:build --if-present
+  npm run affected:test
+```
+
+<br>
+
+---
 
 <a name="9"></a>
 
-### How do I publish a stand-alone library for external use?
+#### > How do I publish a stand-alone library for external use?
+
+<br>
+
+---
 
 <a name="10"></a>
 
-### How do I prepare containerized builds?
+#### > How do I prepare containerized builds?
+
+<br>
+
+---
 
 <a name="11"></a>
 
-### What is the difference between code promotions and code pulls?
+<br>
+
+#### > What is the difference between code promotions and code pulls?
