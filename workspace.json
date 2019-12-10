@@ -18,7 +18,8 @@
             "assets": ["apps/accounts/src/favicon.ico", "apps/accounts/src/assets"],
             "styles": ["apps/accounts/src/styles.scss"],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/babel"
+            "webpackConfig": "@nrwl/react/plugins/webpack",
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -70,7 +71,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/accounts/jest.config.js",
-            "tsConfig": "apps/accounts/tsconfig.spec.json"
+            "tsConfig": "apps/accounts/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -123,7 +125,23 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/accounts/ui/jest.config.js",
-            "tsConfig": "libs/accounts/ui/tsconfig.spec.json"
+            "tsConfig": "libs/accounts/ui/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/accounts/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
@@ -145,7 +163,8 @@
             "assets": ["apps/prospects/src/favicon.ico", "apps/prospects/src/assets"],
             "styles": ["apps/prospects/src/styles.scss"],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/babel"
+            "webpackConfig": "@nrwl/react/plugins/webpack",
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -196,7 +215,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/prospects/jest.config.js",
-            "tsConfig": "apps/prospects/tsconfig.spec.json"
+            "tsConfig": "apps/prospects/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -249,7 +269,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/prospects/ui/jest.config.js",
-            "tsConfig": "libs/prospects/ui/tsconfig.spec.json"
+            "tsConfig": "libs/prospects/ui/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -273,7 +294,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/utils/jest.config.js",
-            "tsConfig": "libs/shared/utils/tsconfig.spec.json"
+            "tsConfig": "libs/shared/utils/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -294,7 +316,7 @@
           }
         },
         "build": {
-          "builder": "@nrwl/web:bundle",
+          "builder": "@nrwl/web:package",
           "options": {
             "outputPath": "dist/libs/shared/auth",
             "tsConfig": "libs/shared/auth/tsconfig.lib.json",
@@ -308,7 +330,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/auth/jest.config.js",
-            "tsConfig": "libs/shared/auth/tsconfig.spec.json"
+            "tsConfig": "libs/shared/auth/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

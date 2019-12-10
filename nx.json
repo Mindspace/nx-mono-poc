@@ -13,14 +13,14 @@
     },
     "accounts-e2e": {
       "tags": ["type:e2e"],
-      "implicitDependencies": ["accounts"]
+      "implicitDependencies": ["accounts", "accounts"]
     },
     "prospects": {
       "tags": ["scope:prospects", "type:app"]
     },
     "prospects-e2e": {
       "tags": ["type:e2e"],
-      "implicitDependencies": ["prospects"]
+      "implicitDependencies": ["prospects", "prospects"]
     },
     "accounts-ui": {
       "tags": ["scope:accounts", "type:ui"]
@@ -33,6 +33,14 @@
     },
     "shared-auth": {
       "tags": ["scope:shared", "type:auth"]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook"]
+      }
     }
   }
 }

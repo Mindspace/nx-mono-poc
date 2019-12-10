@@ -6,7 +6,10 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "@nrwl/nx"],
+  "plugins": [
+    "@typescript-eslint",
+    "@nrwl/nx"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -23,22 +26,36 @@
       {
         "allow": [],
         "depConstraints": [
-          { "sourceTag": "scope:shared", "onlyDependOnLibsWithTags": ["scope:shared"] },
+          {
+            "sourceTag": "scope:shared",
+            "onlyDependOnLibsWithTags": [
+              "scope:shared"
+            ]
+          },
           {
             "sourceTag": "scope:accounts",
-            "onlyDependOnLibsWithTags": ["scope:accounts", "scope:shared", "scope:auth"]
+            "onlyDependOnLibsWithTags": [
+              "scope:accounts",
+              "scope:shared",
+              "scope:auth"
+            ]
           },
           {
             "sourceTag": "type:e2e",
-            "onlyDependOnLibsWithTags": ["type:app"]
+            "onlyDependOnLibsWithTags": [
+              "type:app"
+            ]
           }
-        ]
+        ],
+        "enforceBuildableLibDependency": true
       }
     ]
   },
   "overrides": [
     {
-      "files": ["*.tsx"],
+      "files": [
+        "*.tsx"
+      ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off"
       }
