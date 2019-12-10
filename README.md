@@ -36,7 +36,7 @@ Here are common questions and concerns regarding the use of a mono-repo:
 1. How do I prepare containerized builds?
 1. What is the difference between code promotions and code pulls?
 
-See the Answers here: [Questions & Answers](./QUESTIONS.md)
+See the Answers here: [Questions & Answers](./docs/QUESTIONS.md)
 
 ---
 
