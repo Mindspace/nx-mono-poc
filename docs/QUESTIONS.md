@@ -117,7 +117,41 @@ Library tags are defined in `nx.json` and `.eslintrc` should specify `@nrwl/nx/e
 
 > @see [`.eslintrc`](./.eslintrc)
 
-##### Public APIs
+<br>
+
+<a name="5"></a>
+
+### How can I restrict changes to my library?
+
+The Pull-Request process is the only way to prevent **changes** to library code.
+
+CodeOwners can be assigned to librarie. Any PR change that has changes to a library associated with that CodeOwner will require CodeOwner review and signoff before the PR can be merged. Codeowner groups and coverage are defined in [CODEOWNERS](./CODEOWNERS).
+
+Here is a partial snippet:
+
+```console
+
+# ================================================
+#  @nextgen/accounts
+# ================================================
+
+/apps/accounts/**                                              @nextgen/global-approvers @nextgen/accounts
+/libs/accounts/**                                              @nextgen/global-approvers @nextgen/accounts
+
+# ================================================
+#  @nextgen/shared
+# ================================================
+
+/libs/shared/**                                                @nextgen/global-approvers @nextgen/sel @nextgen/shared
+```
+
+<a name="6"></a>
+
+### How should I organize my application libraries?
+
+<a name="7"></a>
+
+### How do I restrict library code usage to public API(s) only?
 
 A **barrel** file is used to define the public API for a package or library. A barrel file is a _index.ts_ file that lives in the src directory of every Nx lib and is meant to expose logic to the rest of the workspace.
 
@@ -140,22 +174,6 @@ Nx uses TypeScript path mappings (@see [tsconfig.json](./tsconfig.json)) to map 
 When we want to import `AuthSession` inside another lib or app, we want to import it from `@poc/shared/auth`. This is way cleaner then importing it from a relative path like `../../../libs/shared/auth/src/index.ts` and helps protect us from the overexposure problem described above.
 
 > Never let a lib import from its own Barrel file
-
-<br>
-
-<a name="5"></a>
-
-### How can I restrict changes to my library?
-
-The Pull-Request process is the only way to prevent changes to library code.
-
-<a name="6"></a>
-
-### How should I organize my application libraries?
-
-<a name="7"></a>
-
-### How do I restrict library code usage to public API(s) only?
 
 <a name="8"></a>
 
