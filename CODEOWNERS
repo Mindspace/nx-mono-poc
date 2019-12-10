@@ -1,0 +1,172 @@
+# ==================================================================================
+# ==================================================================================
+#                                NextGen CODEOWNERS
+# ==================================================================================
+# ==================================================================================
+#
+#  Configuration of code ownership and review approvals for the thomasburleson/nextgen-poc repo.
+#
+#  More info: https://help.github.com/articles/about-codeowners/
+#
+
+
+# ================================================
+#  General rules / philosophy
+# ================================================
+#
+#  - we trust that people do the right thing and not approve changes they don't feel confident reviewing
+#  - we use github teams so that we funnel code reviews to the most appropriate reviewer, this is why the team structure is fine-grained
+#  - we enforce that only approved PRs get merged to ensure that unreviewed code doesn't get accidentally merged
+#  - we delegate approval rights as much as possible so that we can scale better
+#  - each group must have at least one person, but several people are preferable to avoid a single point of failure issues
+#  - most file groups have one or two global approvers groups as fallbacks:
+#    - @nextgen/fw-global-approvers: for approving minor changes, large-scale refactorings, and emergency situations.
+#    - @nextgen/fw-global-approvers-for-docs-only-changes: for approving minor documentation-only changes that don't require engineering review
+#  - a small number of file groups have very limited number of reviewers because incorrect changes to the files they guard would have serious consequences (e.g. security, public api)
+#
+#  Configuration nuances:
+#
+#  - This configuration works in conjunction with the protected branch settings that require all changes to be made via pull requests with at least one approval.
+#  - This approval can come from an appropriate codeowner, or any repo collaborator (person with write access) if the PR is authored by a codeowner.
+#  - Each codeowners team must have write access to the repo, otherwise their reviews won't count.
+#
+#  In the case of emergency, the repo administrators which include nextgen-caretaker can bypass this requirement.
+
+
+
+# ================================================
+#  GitHub username registry
+#  (just to make this file easier to understand)
+# ================================================
+
+#  hotpixelgroup - Harry Beckwith
+
+
+######################################################################################################
+#
+#  Team structure and memberships
+#  ------------------------------
+#
+#  This section is here just because the GitHub UI is too hard to navigate and audit.
+#
+#  Any changes to team structure or memberships must first be made in this file and only then
+#  implemented in the GitHub UI.
+#######################################################################################################
+
+
+# ===========================================================
+#  @nextgen/global-approvers
+# ===========================================================
+#  Used for approving minor changes, large-scale refactorings, and emergency situations.
+#  (secret team to avoid review requests, it also doesn't inherit from @nextgen/global because nested teams can't be secret)
+#
+#   - ThomasBurleson
+#   - HotPixelGroup
+
+# ===========================================================
+#  @nextgen/sel
+# ===========================================================
+#  Used for approving multi-library or `shared` lib changes
+#  (secret team to avoid review requests, it also doesn't inherit from @nextgen/global because nested teams can't be secret)
+#
+#   - Arjun Prasad (arjun.x.prasad@ampf.com)
+#   - Sandeep Mattaparthi (sandeep.mattaparthi@ampf.com)
+
+# ===========================================================
+#  @nextgen/dev-infra
+# ===========================================================
+#  Used for approving build, tooling, and other repo changes
+#  (secret team to avoid review requests, it also doesn't inherit from @nextgen/global because nested teams can't be secret)
+#
+#   - ThomasBurleson
+
+
+# ===========================================================
+#  @nextgen/prospects
+# ===========================================================
+#
+#   - Arjun Prasad (arjun.x.prasad@ampf.com)
+
+
+# ===========================================================
+#  @nextgen/accounts
+# ===========================================================
+#
+#   - Sandeep Mattaparthi (sandeep.mattaparthi@ampf.com)
+#   - Jimmy Guzman (jimmy.guzman@ampf.com)
+#   - Michael Brutskiy (michael.brutskiy@ampf.com)
+
+
+# ===========================================================
+#  @nextgen/shared
+# ===========================================================
+#
+#   - Jimmy Guzman (jimmy.guzman@ampf.com)
+
+
+######################################################################################################
+#
+# CODEOWNERS rules
+# -----------------
+#
+# All the following rules are applied in the order specified in this file.
+# The last rule that matches wins!
+#
+# See https://git-scm.com/docs/gitignore#_pattern_format for pattern syntax docs.
+#
+######################################################################################################
+
+
+# ================================================
+#  Default Owners
+# (in case no pattern matches a path in a PR - this should be treated as a bug and result in adding the path to CODEOWNERS)
+# ================================================
+
+* @nextgen/global-approvers @nextgen/sel
+
+
+
+# ================================================
+#  Build, CI & Dev-infra Owners
+# ================================================
+
+/tools/**                                                       @nextgen/dev-infra  @nextgen/sel
+/tools/build/**                                                 @nextgen/dev-infra  @nextgen/sel
+/.vscode/**                                                     @nextgen/dev-infra  @nextgen/sel
+/scripts/**                                                     @nextgen/dev-infra  @nextgen/sel
+
+
+
+
+
+# ================================================
+#  @nextgen/prospects
+# ================================================
+
+/apps/prospects/**                                              @nextgen/global-approvers @nextgen/prospects
+/libs/prospects/**                                              @nextgen/global-approvers @nextgen/prospects
+
+
+
+# ================================================
+#  @nextgen/accounts
+# ================================================
+
+/apps/accounts/**                                              @nextgen/global-approvers @nextgen/accounts
+/libs/accounts/**                                              @nextgen/global-approvers @nextgen/accounts
+
+
+
+# ================================================
+#  @nextgen/shared
+# ================================================
+
+/libs/shared/**                                                @nextgen/global-approvers @nextgen/sel @nextgen/shared 
+
+
+
+# ================================================
+#  CODEOWNERS Owners owners ...
+# ================================================
+
+/.github/CODEOWNERS                                            @nextgen/global-approvers @nextgen/sel

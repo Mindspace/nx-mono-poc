@@ -154,6 +154,9 @@ CodeOwners can be assigned responsibility for sections of the repository. Any PR
  <repo path>    <organization>/<team> <organization>/<team>
 ```
 
+- Multiple code owners can be assigned to a single code path (space delimited): `<team name>` |`<user name>` | `<email>`.
+- When a file matches multiple entries in the CODEOWNERS file, the last entry takes precedence.
+
 Here is a partial snippet:
 
 ```console
@@ -205,6 +208,22 @@ A monorepo can contain multiple applications and multiple libraries. Developers 
 <br>
 
 ---
+
+Traditionally code is organized in folders (aka packages) contained in the sub directories within the application directory; eg `/apps/accounts/src/app/banking`. To encourage code sharing, code reuse, and to **optimize build and test speeds**, code be organized in _libraries_ inside the `/libs` directory.
+
+For small to medium sized monorepos, it makes sense to **group libraries** in a folder for the application that they belong to. In the Accounts application, we have a folder for the accounts UI in `libs/acounts/ui`. It's also useful to have a shared directory for libraries that can be used in more than one application.
+
+If the Accounts application were to grow larger and larger, it might make sense to add a folder for each subsection of the application. For instance, a folder for searching for accounts, one for cancellations, and one for browsing transactions.
+
+The existing libraries would need to be moved into the appropriate area and you would also need to make a shared folder inside of your application-specific folder for libraries like the ui-formatters library that could be used across sub-sections of that application: `/libs/accounts/shared/<lib-XYZ>`.
+
+When you move a library, remember to update references to it in your codebase, and in your **`nx.json`** and **`workspace.json`** files.
+
+Developers should read the following posts for more details:
+
+- https://blog.strongbrew.io/opinionated-guidelines-for-large-nx-angular-projects/
+
+<br>
 
 <a name="7"></a>
 
