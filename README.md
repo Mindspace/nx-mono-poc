@@ -57,7 +57,24 @@ For the following schematics (code generators):
 - `@nrwl/cypress`
 - `@nrwl/linter`
 - `@nrwl/workspace`
+- `@nrwl/storybook`
 
 Use commands like `nx g @nrwl/react:lib --help` to see:
 
 ![](https://i.imgur.com/FIqB8Ka.png)
+
+### Storybook
+
+Now Storybook support can be added to UI libraries:
+
+```console
+nx g @nrwl/react:component --project=accounts-ui --directory=dashboard --name=dashboard
+```
+
+and then once the stories have been created, developers use
+
+```
+nx run accounts-ui:storybook
+```
+
+to see the storybook run locally. Finally a e2e-storybook `accounts-ui-e2e` has been created to allow UI library storybooks to be programmatically tested for workflows and snapshot regressions.
