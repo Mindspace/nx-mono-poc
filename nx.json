@@ -9,59 +9,38 @@
   },
   "projects": {
     "accounts": {
-      "tags": [
-        "scope:accounts",
-        "type:app"
-      ]
+      "tags": ["scope:accounts", "type:app"]
     },
     "accounts-e2e": {
-      "tags": [
-        "type:e2e"
-      ],
-      "implicitDependencies": [
-        "accounts"
-      ]
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["accounts", "accounts"]
     },
     "prospects": {
-      "tags": [
-        "scope:prospects",
-        "type:app"
-      ]
+      "tags": ["scope:prospects", "type:app"]
     },
     "prospects-e2e": {
-      "tags": [
-        "type:e2e"
-      ],
-      "implicitDependencies": [
-        "prospects"
-      ]
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["prospects", "prospects"]
     },
     "accounts-ui": {
-      "tags": [
-        "scope:accounts",
-        "type:ui"
-      ]
+      "tags": ["scope:accounts", "type:ui"]
     },
     "prospects-ui": {
-      "tags": [
-        "scope:prospects",
-        "type:ui"
-      ]
+      "tags": ["scope:prospects", "type:ui"]
     },
     "shared-utils": {
-      "tags": [
-        "scope:shared",
-        "type:utils"
-      ]
+      "tags": ["scope:shared", "type:utils"]
     },
     "shared-auth": {
-      "tags": [
-        "scope:shared",
-        "type:auth"
-      ]
-    },
-    "accounts-ui-e2e": {
-      "tags": []
+      "tags": ["scope:shared", "type:auth"]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook"]
+      }
     }
   }
 }

@@ -4,7 +4,7 @@ import './dashboard.scss';
 
 /* eslint-disable-next-line */
 export interface DashboardProps {
-  organization: string;
+  organization?: string;
 }
 
 export const Dashboard = (props: DashboardProps) => {

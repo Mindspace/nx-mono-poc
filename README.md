@@ -14,7 +14,10 @@ This repository uses:
 - [GitFlow and Best Practices](https://hackmd.io/mqAqzpKyTqmQuofFZkkHxQ)
 - [Nx tooling](https://github.com/nrwl/nx) is used for building, testing, and mono-repo structures.
 - `@nrwl:<xxxx>` tools are used to generate libs, apps, components, and more.
-  - `@nrwl/react:lib g ui --directory=shared`
+  - Create a React UI library: `@nrwl/react:lib g ui --directory=shared`
+  - Create a React Non-Library: `nx g @nrwl/web:lib data-access --directory=accounts`
+
+  
 
 <br>
 

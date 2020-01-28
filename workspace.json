@@ -15,15 +15,11 @@
             "main": "apps/accounts/src/main.tsx",
             "polyfills": "apps/accounts/src/polyfills.ts",
             "tsConfig": "apps/accounts/tsconfig.app.json",
-            "assets": [
-              "apps/accounts/src/favicon.ico",
-              "apps/accounts/src/assets"
-            ],
-            "styles": [
-              "apps/accounts/src/styles.scss"
-            ],
+            "assets": ["apps/accounts/src/favicon.ico", "apps/accounts/src/assets"],
+            "styles": ["apps/accounts/src/styles.scss"],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/babel"
+            "webpackConfig": "@nrwl/react/plugins/webpack",
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -67,21 +63,16 @@
           "options": {
             "linter": "eslint",
             "config": "apps/accounts/.eslintrc",
-            "tsConfig": [
-              "apps/accounts/tsconfig.app.json",
-              "apps/accounts/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/accounts/**"
-            ]
+            "tsConfig": ["apps/accounts/tsconfig.app.json", "apps/accounts/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/accounts/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/accounts/jest.config.js",
-            "tsConfig": "apps/accounts/tsconfig.spec.json"
+            "tsConfig": "apps/accounts/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -109,13 +100,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/accounts-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/accounts-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/accounts-e2e/**"
-            ]
+            "tsConfig": ["apps/accounts-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/accounts-e2e/**"]
           }
         }
       }
@@ -131,21 +117,16 @@
           "options": {
             "linter": "eslint",
             "config": "libs/accounts/ui/.eslintrc",
-            "tsConfig": [
-              "libs/accounts/ui/tsconfig.lib.json",
-              "libs/accounts/ui/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/accounts/ui/**"
-            ]
+            "tsConfig": ["libs/accounts/ui/tsconfig.lib.json", "libs/accounts/ui/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/accounts/ui/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/accounts/ui/jest.config.js",
-            "tsConfig": "libs/accounts/ui/tsconfig.spec.json"
+            "tsConfig": "libs/accounts/ui/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         },
         "storybook": {
@@ -179,15 +160,11 @@
             "main": "apps/prospects/src/main.tsx",
             "polyfills": "apps/prospects/src/polyfills.ts",
             "tsConfig": "apps/prospects/tsconfig.app.json",
-            "assets": [
-              "apps/prospects/src/favicon.ico",
-              "apps/prospects/src/assets"
-            ],
-            "styles": [
-              "apps/prospects/src/styles.scss"
-            ],
+            "assets": ["apps/prospects/src/favicon.ico", "apps/prospects/src/assets"],
+            "styles": ["apps/prospects/src/styles.scss"],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/babel"
+            "webpackConfig": "@nrwl/react/plugins/webpack",
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -230,21 +207,16 @@
           "options": {
             "linter": "eslint",
             "config": "apps/prospects/.eslintrc",
-            "tsConfig": [
-              "apps/prospects/tsconfig.app.json",
-              "apps/prospects/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/prospects/**"
-            ]
+            "tsConfig": ["apps/prospects/tsconfig.app.json", "apps/prospects/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/prospects/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/prospects/jest.config.js",
-            "tsConfig": "apps/prospects/tsconfig.spec.json"
+            "tsConfig": "apps/prospects/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -272,13 +244,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/prospects-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/prospects-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/prospects-e2e/**"
-            ]
+            "tsConfig": ["apps/prospects-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/prospects-e2e/**"]
           }
         }
       }
@@ -294,21 +261,16 @@
           "options": {
             "linter": "eslint",
             "config": "libs/prospects/ui/.eslintrc",
-            "tsConfig": [
-              "libs/prospects/ui/tsconfig.lib.json",
-              "libs/prospects/ui/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/prospects/ui/**"
-            ]
+            "tsConfig": ["libs/prospects/ui/tsconfig.lib.json", "libs/prospects/ui/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/prospects/ui/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/prospects/ui/jest.config.js",
-            "tsConfig": "libs/prospects/ui/tsconfig.spec.json"
+            "tsConfig": "libs/prospects/ui/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -324,21 +286,16 @@
           "options": {
             "linter": "eslint",
             "config": "libs/shared/utils/.eslintrc",
-            "tsConfig": [
-              "libs/shared/utils/tsconfig.lib.json",
-              "libs/shared/utils/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/utils/**"
-            ]
+            "tsConfig": ["libs/shared/utils/tsconfig.lib.json", "libs/shared/utils/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/shared/utils/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/utils/jest.config.js",
-            "tsConfig": "libs/shared/utils/tsconfig.spec.json"
+            "tsConfig": "libs/shared/utils/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -354,18 +311,12 @@
           "options": {
             "linter": "eslint",
             "config": "libs/shared/auth/.eslintrc",
-            "tsConfig": [
-              "libs/shared/auth/tsconfig.lib.json",
-              "libs/shared/auth/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/auth/**"
-            ]
+            "tsConfig": ["libs/shared/auth/tsconfig.lib.json", "libs/shared/auth/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/shared/auth/**"]
           }
         },
         "build": {
-          "builder": "@nrwl/web:bundle",
+          "builder": "@nrwl/web:package",
           "options": {
             "outputPath": "dist/libs/shared/auth",
             "tsConfig": "libs/shared/auth/tsconfig.lib.json",
@@ -379,39 +330,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/auth/jest.config.js",
-            "tsConfig": "libs/shared/auth/tsconfig.spec.json"
-          }
-        }
-      }
-    },
-    "accounts-ui-e2e": {
-      "root": "apps/accounts-ui-e2e",
-      "sourceRoot": "apps/accounts-ui-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/accounts-ui-e2e/cypress.json",
-            "tsConfig": "apps/accounts-ui-e2e/tsconfig.e2e.json",
-            "devServerTarget": "accounts-ui:storybook"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "accounts-ui:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/accounts-ui-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/accounts-ui-e2e/**"
-            ]
+            "tsConfig": "libs/shared/auth/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
