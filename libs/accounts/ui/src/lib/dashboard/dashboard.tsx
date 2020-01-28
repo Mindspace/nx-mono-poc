@@ -15,6 +15,7 @@ export const Dashboard = (props: DashboardProps) => {
   return (
     <div>
       <h1>Welcome to {this.state.organization} dashboard component!</h1>
+      <CustomerCard></CustomerCard>
     </div>
   );
 };
